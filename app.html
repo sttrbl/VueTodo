@@ -9,8 +9,8 @@
 </head>
 
 <body>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script>
 	<div id="app">
-
 		<header class="header">
 			<h1 class="header__headline">vue todo</h1>
 
@@ -20,7 +20,7 @@
 					@keyup.enter = "addTask" 
 					class="add-row__input" 
 					type="text" 
-					maxlength="45" 
+					maxlength="80" 
 					required>
 				<button @click = "addTask" class="add-row__button"></button>
 			</div>
@@ -36,27 +36,26 @@
 			</nav>
 		</header>
 
-
-		
-
-			<ul class="task-list" v-show='allTasks.length'>
-		   	<task-row
-		   	  v-for="(taskObj, num) in this[currentTaskObjName]" 
-		   	  :task="taskObj"
-		   	  :key="taskObj.id"
-		   	  @change-task-state="changeTaskState"
-		   	  @remove-task="removeTask"
-		   	></task-row>
-		 </ul>
+		<ul class="task-list" v-show='allTasks.length'>
+	   	<task-row
+	   	  v-for="(taskObj, num) in this[currentTaskObjName]" 
+	   	  :task="taskObj"
+	   	  :key="taskObj.id"
+	   	  @change-task-state="changeTaskState"
+	   	  @remove-task="removeTask"
+	   	></task-row>
+		</ul>
 
 
 		<template v-if="this[currentTaskObjName].length">
 			<footer class="footer">
-				<button 
-					class="footer__button"
-					v-if="true"
-					@click = "checkAllTasks"
-				>Выполнить все</button>
+				<div>
+					<button 
+						class="footer__button"
+						v-show="activeTasks.length"
+						@click = "checkAllTasks"
+					>Выполнить все</button>
+				</div>
 
 				<button 
 					class="footer__button"
@@ -67,9 +66,6 @@
 
 	</div>
 
-	
-	
-	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 	<script src="js/main.js"></script>
 
 </body>

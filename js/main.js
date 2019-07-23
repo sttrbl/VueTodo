@@ -10,6 +10,7 @@ Vue.component('task-row', {
 							 ></button>
 
 							 <span class="task__text">{{task.text}}</span>
+							 
 							 <button 
 							   class="task__remove-button"
 							   @click = "$emit('remove-task', task.id)"

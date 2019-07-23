@@ -1,23 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC|Open+Sans+Condensed:300&display=swap');
 @import url('https://fonts.googleapis.com/css?family=PT+Sans&display=swap');
 
-
 html {
 	color: #333;
-	background: #F6F6F6;
 	font-size: 14px;
-}
-
-body {
-	background: #F3F3F3;
-	margin: 0;
+	overflow-y: scroll;
 }
 
 html,
 body {
 	width: 100%;
+	margin: 0;
+	background: #F3F3F3;
 }
-
 
 button {
 	padding: 0;
@@ -35,18 +30,18 @@ button:focus {
 
 #app {
 	position: relative;
-	min-width: 330px;
+	box-sizing: border-box;
 	width: 500px;
-	margin:60px auto;
+	min-width: 330px;
+	margin: 60px auto;
 	padding: 2em;
 	border: 1px solid #C6C7CC;
 	border-radius: 10px;
 	background: #FFF;
 	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
 	font: 1em/1.25 'PT Sans', sans-serif;
-	box-sizing: border-box;
+	transition: 2s;
 }
-
 
 .header__headline {
 	margin: 0;
@@ -71,15 +66,17 @@ button:focus {
 }
 
 .add-row__input {
+	min-width: 210px;
 	padding: 0.4em 0.4em;
 	border: 1px solid #D2D6D7;
 	border-top-right-radius: 0;
 	border-bottom-right-radius: 0;
 	font-family: 'PT Sans', sans-serif;
 	font-size: 1.35em;
+	outline: none;
+
 	flex-grow: 1;
 	flex-shrink: 1;
-	min-width: 210px;
 }
 
 .add-row__button {
@@ -88,15 +85,10 @@ button:focus {
 	border-top-left-radius: 0;
 	border-bottom-left-radius: 0;
 	background: #999;
+
 	flex-basis: 4em;
 	flex-shrink: 0;
 }
-
-.add-row__button:hover {
-	background: #333;
-}
-
-
 
 .add-row__button::after {
 	font-family: 'Font Awesome 5 Free';
@@ -110,6 +102,9 @@ button:focus {
 }
 
 .tab-list__item {
+	position: relative;
+	top: 2px;
+	margin-right: 0.2em;
 	padding: 0.2em 0.8em 0.3em;
 	color: #FFF;
 	border: 2px solid #CF2323;
@@ -119,16 +114,13 @@ button:focus {
 	background: #CF2323;
 	font-family: 'PT Sans', sans-serif;
 	font-size: 1em;
-	font-weight: bold;
-	margin-right: 0.2em;
-	position: relative;
-	top: 2px;
 }
 
 .tab-list__item:hover,
 .tab-list__item_current {
 	color: #333;
 	background: #FFF;
+	font-weight: bold;
 }
 
 .tab-list__item:last-child {
@@ -165,11 +157,6 @@ button:focus {
 	font-size: 1.15em;
 }
 
-.task__controller:hover,
-.task__remove-button:hover {
-	color: #333;
-}
-
 .task__text {
 	padding: 0 1em;
 
@@ -181,8 +168,12 @@ button:focus {
 }
 
 .task_completed .task__controller::after {
-	content: '\f14a';
 	color: #333;
+	content: '\f14a';
+}
+
+.task_completed .task__text {
+	text-decoration: line-through;
 }
 
 .task__remove-button::after {
@@ -207,9 +198,18 @@ button:focus {
 	font-weight: bold;
 }
 
-.footer__button:hover {
+.footer__button:hover,
+.task__controller:hover,
+.task__remove-button:hover {
 	color: #333;
 }
+
+.add-row__button:hover {
+	background: #333;
+}
+
+
+/*------------Media queries--------------*/
 
 @media screen and (max-width: 600px) {
 	html {
@@ -218,21 +218,40 @@ button:focus {
 
 	#app {
 		width: 95%;
-		padding: 1em;
 		margin-top: 1em;
 		margin-bottom: 1em;
+		padding: 1em;
 	}
-
 }
 
 @media screen and (max-width: 400px) {
 	.tab-list {
 		display: flex;
+
 		justify-content: space-between;
 	}
 
 	.tab-list__item {
 		flex-grow: 1;
 	}
-
 }
+
+
+
+/*------------Animation--------------*/
+
+.add-row__button,
+.footer__button,
+.task__controller,
+.task__remove-button {
+	transition: 0.15s;
+}
+
+.tab-list__item {
+	transition: 0.08s ease-out;
+}
+
+
+
+
+
