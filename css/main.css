@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC|Open+Sans+Condensed:300&display=swap');
 @import url('https://fonts.googleapis.com/css?family=PT+Sans&display=swap');
 
+input,
+button {
+    outline: 0;
+    outline-offset: 0;
+}
+
 html {
 	color: #333;
 	font-size: 14px;
@@ -21,14 +27,7 @@ button {
 	cursor: pointer;
 }
 
-/*input:active, 
-input:focus*/
-button:active,
-button:focus {
-	outline: none;
-}
-
-#app {
+.app {
 	position: relative;
 	box-sizing: border-box;
 	width: 500px;
@@ -73,7 +72,6 @@ button:focus {
 	border-bottom-right-radius: 0;
 	font-family: 'PT Sans', sans-serif;
 	font-size: 1.35em;
-	outline: none;
 
 	flex-grow: 1;
 	flex-shrink: 1;
