@@ -1,5 +1,12 @@
-@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Open+Sans+Condensed:300&display=swap');
-@import url('https://fonts.googleapis.com/css?family=PT+Sans&display=swap');
+@font-face {
+	font-family: 'Amatic SC';
+	src: url('../fonts/AmaticSC-Regular.ttf');
+}
+
+@font-face {
+	font-family: 'PT Sans';
+	src: url('../fonts/PTSans-Regular.ttf');
+}
 
 input,
 button {
@@ -25,6 +32,11 @@ button {
 	border: none;
 	background: transparent;
 	cursor: pointer;
+	color: #999;
+}
+
+button:hover {
+	color: #333;
 }
 
 .app {
@@ -38,15 +50,13 @@ button {
 	border-radius: 10px;
 	background: #FFF;
 	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
-	font: 1em/1.25 'PT Sans', sans-serif;
-	transition: 2s;
+	font: 1em/1.25;
 }
 
 .header__headline {
 	margin: 0;
 	padding-top: 0.25em;
 	padding-bottom: 0.25em;
-	font-family: 'Amatic SC';
 	font-size: 4em;
 	text-align: center;
 	text-transform: uppercase;
@@ -70,7 +80,6 @@ button {
 	border: 1px solid #D2D6D7;
 	border-top-right-radius: 0;
 	border-bottom-right-radius: 0;
-	font-family: 'PT Sans', sans-serif;
 	font-size: 1.35em;
 
 	flex-grow: 1;
@@ -89,7 +98,6 @@ button {
 }
 
 .add-row__button::after {
-	font-family: 'Font Awesome 5 Free';
 	font-size: 2em;
 	font-weight: 900;
 	content: '\f054';
@@ -110,7 +118,6 @@ button {
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 	background: #CF2323;
-	font-family: 'PT Sans', sans-serif;
 	font-size: 1em;
 }
 
@@ -144,14 +151,11 @@ button {
 	box-sizing: border-box;
 	width: 100%;
 	padding: 0.5em 0;
-	font-family: 'PT Sans', sans-serif;
 	font-size: 1.25em;
 }
 
 .task__controller,
 .task__remove-button {
-	color: #999;
-	font-family: 'Font Awesome 5 Free';
 	font-size: 1.15em;
 }
 
@@ -190,21 +194,36 @@ button {
 }
 
 .footer__button {
-	color: #999;
-	font-family: 'PT Sans', sans-serif;
 	font-size: 1em;
 	font-weight: bold;
 }
 
-.footer__button:hover,
-.task__controller:hover,
-.task__remove-button:hover {
-	color: #333;
-}
-
 .add-row__button:hover {
 	background: #333;
+	color: #FFF;
 }
+
+
+
+/*------------Font-Family--------------*/
+
+.add-row__button:after,
+.task__controller:after,
+.task__remove-button:after {
+	font-family: 'Font Awesome 5 Free';
+}
+
+.task,
+.footer__button,
+.tab-list__item,
+.add-row__input {
+	font-family: 'PT Sans', sans-serif;
+}
+
+.header__headline {
+	font-family: 'Amatic SC';
+}
+
 
 
 /*------------Media queries--------------*/

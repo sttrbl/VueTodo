@@ -1,3 +1,5 @@
+//localStorage.clear();
+
 const taskRow = {
 	props: ['task'],
 	template: `<li 
@@ -19,7 +21,7 @@ const taskRow = {
 };
 
 
-let vm = new Vue({
+const vm = new Vue({
 	el: '.app',
 	components: {
 		taskRow
@@ -38,14 +40,16 @@ let vm = new Vue({
 
 	methods: {
 		updateStorage: function () {
-			localStorage.setItem('tasks', JSON.stringify(this.allTasks));
-			localStorage.setItem('lastId', this.lastId);
+			try {
+				localStorage.setItem('tasks', JSON.stringify(this.allTasks));
+				localStorage.setItem('lastId', this.lastId);
+			} catch (error) {
+
+			}
 		},
 
 		getTaskObjIndex: function (objId) {
-			return this.allTasks.findIndex(task => {
-				return task.id == objId;
-			});
+			return this.allTasks.findIndex(task => task.id == objId);
 		},
 
 		validateNewTaskField: function () {
@@ -95,7 +99,6 @@ let vm = new Vue({
 		}
 	},
 
-
 	watch: {
 		allTasks: {
 			handler: function () {
@@ -105,31 +108,33 @@ let vm = new Vue({
 		}
 	},
 
-
 	computed: {
 		currentTaskObjName: function () {
 			return this.currentTab + 'Tasks';
 		},
 
 		activeTasks: function () {
-			return this.allTasks.filter((task, i) => {
-				return task.state == 'active' ? true : false;
-			});
+			return this.allTasks.filter((task, i) => task.state == 'active' ? true : false);
 		},
 
 		completedTasks: function () {
-			return this.allTasks.filter((task, i) => {
-				return task.state == 'completed' ? true : false;
-			});
+			return this.allTasks.filter((task, i) => task.state == 'completed' ? true : false);
 		},
 	},
 
 	created: function () {
-		const storageTasks = localStorage.getItem('tasks');
+		let storageTasks = null;
+
+		try {
+			storageTasks = JSON.parse(localStorage.getItem('tasks'));
+		} catch (error) {
+			localStorage.clear();
+		}
+
 		const storageLastId = localStorage.getItem('lastId');
 
-		this.allTasks = storageTasks ? JSON.parse(storageTasks) : [];
-		this.lastId = storageLastId ? storageLastId : 0;
+		this.allTasks = storageTasks || [];
+		this.lastId = storageLastId || 0;
 	}
 
 });
