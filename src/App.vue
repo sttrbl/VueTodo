@@ -31,6 +31,7 @@
 			:allTasks="allTasks" 
 			@remove-current-category="allTasks = $event"
 		/>
+
 	</div>
 </template>
 

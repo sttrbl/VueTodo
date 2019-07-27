@@ -1,5 +1,6 @@
 <template>
 	<div>
+
 		<ul class="task-list">
 			<TaskRow
 				v-for="task in this[currentCategory]" 
@@ -9,6 +10,7 @@
 				@remove-task="removeTask"
 			/>
 		</ul>
+
 		<template v-if="this[currentCategory].length">
 			<footer class="footer">
 				<div>
@@ -26,6 +28,8 @@
 				>Удалить все</button>
 			</footer>
 		</template>
+
+		<p v-else class="absence-message">Задачи данной категории отсутствуют.</p>
 	</div>
 </template>
 
@@ -76,9 +80,9 @@ export default {
         removeCurrentCategory () {
             let newAllTaskArray = [];
 
-            if (this.currentCategory == 'completed') {
+            if (this.currentCategory == 'completedTasks') {
                 newAllTaskArray = this.activeTasks;
-            } else if (this.currentCategory == 'active') {
+            } else if (this.currentCategory == 'activeTasks') {
                 newAllTaskArray = this.completedTasks;
             }
             
@@ -91,4 +95,13 @@ export default {
 	}
 }
 </script>
+
+<style scoped>
+	.absence-message {
+		text-align: center;
+		font-family: 'PT Sans';
+		font-size: 1.25em;
+		color: #999;
+	}
+</style>
 
