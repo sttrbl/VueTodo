@@ -9,63 +9,9 @@
 </head>
 
 <body>
-	<div class="app">
-		<header class="header">
-			<h1 class="header__headline">vue todo</h1>
+	<div id="app"></div>
 
-			<div class="add-row">
-				<input 
-					v-model="newTask"
-					@keyup.enter = "addTask" 
-					class="add-row__input" 
-					type="text" 
-					maxlength="80" 
-					required>
-				<button @click = "addTask" class="add-row__button"></button>
-			</div>
-			
-			<nav class="header__tab-list tab-list" v-show='allTasks.length'>
-				<button 
-				 v-for="(tab, i) in tabs" 
-				 :key="tab[0]"
-				 class="tab-list__item" 
-				 :class="{ 'tab-list__item_current': currentTab === tab[0] }"
-				 v-on:click="currentTab = tab[0]"
-				 >{{tab[1]}}</button>
-			</nav>
-		</header>
-
-		<ul class="task-list" v-show='allTasks.length'>
-	   	<task-row
-	   	  v-for="(taskObj, num) in this[currentTaskObjName]" 
-	   	  :task="taskObj"
-	   	  :key="taskObj.id"
-	   	  @change-task-state="changeTaskState"
-	   	  @remove-task="removeTask"
-	   	></task-row>
-		</ul>
-
-
-		<template v-if="this[currentTaskObjName].length">
-			<footer class="footer">
-				<div>
-					<button 
-						class="footer__button"
-						v-show="activeTasks.length"
-						@click = "checkAllTasks"
-					>Выполнить все</button>
-				</div>
-
-				<button 
-					class="footer__button"
-					@click = "removeCurrentTaskCategory"
-				>Удалить все</button>
-			</footer>
-		</template>
-
-	</div>
-
-<script src="/dist/build.js"></script>
+	<script src="/dist/build.js"></script>
 </body>
 
 </html>

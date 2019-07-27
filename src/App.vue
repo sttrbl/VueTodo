@@ -1,60 +1,109 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
-  </div>
+ <div id="app">
+		<header class="header">
+			<h1 class="header__headline">vue todo</h1>
+
+			<div class="add-row">
+				<input 
+					v-model="newTask"
+					@keyup.enter = "addTask" 
+					class="add-row__input" 
+					type="text" 
+					maxlength="80" 
+					required>
+				<button @click = "addTask" class="add-row__button"></button>
+			</div>
+
+			<nav class="header__tab-list tab-list" v-show='allTasks.length'>
+				<button 
+					v-for="(tab) in tabs" 
+					:key="tab[0]"
+					class="tab-list__item" 
+					:class="{ 'tab-list__item_current': currentTab === tab[0] }"
+					v-on:click="currentTab = tab[0]"
+					>{{tab[1]}}</button>
+			</nav>
+		</header>
+
+		<TaskList 
+			v-show='allTasks.length' 
+			:current-category="currentTab + 'Tasks'" 
+			:allTasks="allTasks" 
+			@remove-current-category="allTasks = $event"
+		/>
+	</div>
 </template>
 
 <script>
+import TaskList from './components/TaskList'
+
 export default {
-  name: 'app',
-  data () {
+	components: {
+		TaskList
+	},
+	data: function () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      lastId: null,
+      allTasks: null,
+      tabs: [
+        ['all', 'Все'],
+        ['active', 'Активные'],
+        ['completed', 'Завершенные']
+      ],
+      currentTab: 'all',
+      newTask: ''
     }
-  }
+  },
+
+	methods: {
+		updateStorage () {
+			try {
+				localStorage.setItem('tasks', JSON.stringify(this.allTasks));
+				localStorage.setItem('lastId', this.lastId);
+			} catch (error) {
+
+			}
+		},
+
+		validateNewTaskField () {
+			return !!this.newTask.trim();
+		},
+
+		addTask () {
+			if (!this.validateNewTaskField()) return;
+
+			this.allTasks.push({
+				id: ++this.lastId,
+				text: this.newTask,
+				state: 'active'
+			});
+
+			this.newTask = '';
+		}
+	},
+
+	watch: {
+		allTasks: {
+			handler () {
+				this.updateStorage();
+			},
+			deep: true
+		}
+	},
+
+	created: function () {
+		let storageTasks = null;
+
+		try {
+			storageTasks = JSON.parse(localStorage.getItem('tasks'));
+		} catch (error) {
+			localStorage.clear();
+		}
+
+		const storageLastId = localStorage.getItem('lastId');
+
+		this.allTasks = storageTasks || [];
+		this.lastId = storageLastId || 0;
+	}
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
-</style>
