@@ -1,6 +1,5 @@
 <template>
 	<div>
-
 		<ul class="task-list">
 			<TaskRow
 				v-for="task in this[currentCategory]" 
@@ -15,7 +14,7 @@
 			<footer class="footer">
 				<div>
 					<button 
-						v-show="activeTasks.length"
+						v-show="activeTasks.length && currentCategory != 'completedTasks'"
 						class="footer__button"
 						@click='checkAllTasks'
 					>
@@ -97,11 +96,42 @@ export default {
 </script>
 
 <style scoped>
-	.absence-message {
-		text-align: center;
-		font-family: 'PT Sans';
-		font-size: 1.25em;
-		color: #999;
-	}
+
+.task-list {
+	margin: 0;
+	padding: 0.6em 0;
+}
+
+
+.task-list__item {
+	border-bottom: 1px solid #F3F3F3;
+}
+
+.task-list__item:last-child {
+	border: none;
+}
+
+.absence-message {
+	text-align: center;
+	font-family: 'PT Sans';
+	font-size: 1.25em;
+	color: #999;
+}
+
+.footer {
+	display: flex;
+	box-sizing: border-box;
+	width: 100%;
+	padding-top: 0.8em;
+	border-top: 1px solid #D0D0D0;
+
+	justify-content: space-between;
+}
+
+.footer__button {
+	font-size: 1em;
+	font-weight: bold;
+}
+	
 </style>
 

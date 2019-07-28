@@ -27,3 +27,43 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.task {
+	display: flex;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0.5em 0;
+	font-size: 1.25em;
+}
+
+.task__controller,
+.task__remove-button {
+	font-size: 1.15em;
+}
+
+.task__text {
+	padding: 0 1em;
+
+	flex-grow: 1;
+}
+
+.task__controller::after {
+	content: '\f0c8';
+}
+
+.task_completed .task__controller::after {
+	color: #333;
+	content: '\f14a';
+}
+
+.task_completed .task__text {
+	text-decoration: line-through;
+}
+
+.task__remove-button::after {
+	font-weight: 900;
+	content: '\f00d';
+}
+
+</style>

@@ -108,3 +108,103 @@ export default {
 	}
 }
 </script>
+
+<style scoped>
+#app {
+	position: relative;
+	box-sizing: border-box;
+	width: 500px;
+	min-width: 330px;
+	margin: 60px auto;
+	padding:1em 2em;
+	border: 1px solid #C6C7CC;
+	border-radius: 10px;
+	background: #FFF;
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
+}
+
+
+.header__headline {
+	margin: 0;
+	padding-top: 0.25em;
+	padding-bottom: 0.25em;
+	font-size: 4em;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.add-row {
+	display: flex;
+	padding-bottom: 2em;
+
+	flex-wrap: nowrap;
+}
+
+.add-row__input,
+.add-row__button {
+	border-radius: 5px;
+}
+
+.add-row__input {
+	min-width: 210px;
+	padding: 0.4em 0.4em;
+	border: 1px solid #D2D6D7;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+	font-size: 1.35em;
+
+	flex-grow: 1;
+	flex-shrink: 1;
+}
+
+.add-row__button {
+	color: #FFF;
+	border: 1px solid #999;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+	background: #999;
+
+	flex-basis: 4em;
+	flex-shrink: 0;
+}
+
+.add-row__button::after {
+	font-size: 2em;
+	font-weight: 900;
+	content: '\f054';
+}
+
+.add-row__button:hover {
+	background: #333;
+	color: #FFF;
+}
+
+.header__tab-list {
+	border-bottom: 2px solid #CF2323;
+}
+
+.tab-list__item {
+	position: relative;
+	top: 2px;
+	margin-right: 0.2em;
+	padding: 0.2em 0.8em 0.3em;
+	color: #FFF;
+	border: 2px solid #CF2323;
+	border-bottom: 0;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	background: #CF2323;
+	font-size: 1em;
+}
+
+.tab-list__item:hover,
+.tab-list__item_current {
+	color: #333;
+	background: #FFF;
+	font-weight: bold;
+}
+
+.tab-list__item:last-child {
+	margin-right: 0;
+}	
+</style>
