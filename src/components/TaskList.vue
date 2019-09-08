@@ -17,8 +17,7 @@
 						v-show="activeTasks.length && currentCategory != 'completedTasks'"
 						class="footer__button"
 						@click='checkAllTasks'
-					>
-					Выполнить все</button>
+					>Выполнить все</button>
 				</div>
 
 				<button 

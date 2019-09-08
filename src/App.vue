@@ -32,7 +32,7 @@
 			@remove-current-category="allTasks = $event"
 		/>
 
-	</div>
+</div>
 </template>
 
 <script>
@@ -113,8 +113,8 @@ export default {
 #app {
 	position: relative;
 	box-sizing: border-box;
-	width: 500px;
-	min-width: 330px;
+	max-width: 500px;
+	min-width: 300px;
 	margin: 60px auto;
 	padding:1em 2em;
 	border: 1px solid #C6C7CC;
@@ -122,7 +122,6 @@ export default {
 	background: #FFF;
 	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
 }
-
 
 .header__headline {
 	margin: 0;
@@ -146,7 +145,7 @@ export default {
 }
 
 .add-row__input {
-	min-width: 210px;
+	min-width: 150px;
 	padding: 0.4em 0.4em;
 	border: 1px solid #D2D6D7;
 	border-top-right-radius: 0;
@@ -206,5 +205,28 @@ export default {
 
 .tab-list__item:last-child {
 	margin-right: 0;
-}	
+}
+
+@media screen and (max-width: 600px) {
+	#app {
+		width: 95%;
+		margin-top: 1em;
+		margin-bottom: 1em;
+		padding: 1em;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.tab-list {
+		display: flex;
+
+		justify-content: space-between;
+	}
+
+	.tab-list__item {
+		flex-grow: 1;
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
 </style>
