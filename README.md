@@ -1,1 +1,0 @@
-# Simple Vue.js to-do
