@@ -49,28 +49,24 @@ export default {
 
   computed: {
     activeTasks() {
-      return this.allTasks.filter((task, i) =>
-        task.state == "active" ? true : false
-      );
+      return this.allTasks.filter((task, i) => task.state === "active");
     },
 
     completedTasks() {
-      return this.allTasks.filter((task, i) =>
-        task.state == "completed" ? true : false
-      );
+      return this.allTasks.filter((task, i) => task.state === "completed");
     }
   },
 
   methods: {
     getTaskIndex(objId) {
-      return this.allTasks.findIndex(task => task.id == objId);
+      return this.allTasks.findIndex((task) => task.id === objId);
     },
 
     changeTaskState(taskId) {
       const taskIndex = this.getTaskIndex(taskId);
       const taskObj = this.allTasks[taskIndex];
 
-      taskObj.state = taskObj.state == "active" ? "completed" : "active";
+      taskObj.state = (taskObj.state === 'active') ? 'completed' : 'active';
     },
 
     removeTask(taskId) {
@@ -92,7 +88,9 @@ export default {
     },
 
     checkAllTasks() {
-      this.allTasks.forEach(item => (item.state = "completed"));
+      this.allTasks.forEach((item) => {
+        item.state = "completed";
+      });
     }
   }
 };
